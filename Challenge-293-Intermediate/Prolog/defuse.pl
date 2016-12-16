@@ -20,15 +20,21 @@ black([black|X]) :- black(X).
 red([black|X]) :- black(X).
 red([red|X]) :- defuse(X).
 
-defusable([], []).
-defusable([(C,N)|X], L) :- 
-	defusable(X,LN), 
+sequence([], []).
+sequence([(C,N)|X], L) :- 
+	sequence(X,LN), 
 	repl(C,N,LC),
 	append(LC,LN, L).
 	
-defusable(X) :- 
-	defusable(X, L), 
-	permutation(L, PL),
-	defuse(PL),!.
+defusable(X, DL) :- 
+	sequence(X, L), !, 
+	findall(PL, (permutation(L, PL), defuse(PL)), DL).
+	
+defusable(X) :-	
+		defusable(X, DL),
+		DL \= [],
+		write("Defused: "), write(DL).
+
+defusable(_) :- write("Booom"), false.
 
 repl(X, N, L) :- length(L, N), maplist(=(X), L).
