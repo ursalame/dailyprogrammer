@@ -19,13 +19,11 @@ class Pacman {
     }
 
     private Integer getMaximumPoints(Node node, int time, boolean allowWrap) {
-        if (node == null || time < 0 || node.getValue() == -3) {
+        if (node == null || time < 0 || node.isUsed()) {
             return 0;
         }
 
-        int lock = node.getValue();
-
-        node.setValue(-3);
+        node.toggleUsed();
 
         List<Integer> list = new ArrayList<>();
 
@@ -37,7 +35,7 @@ class Pacman {
             list.add(getMaximumPoints(node.getWrap(), time, false));
         }
 
-        node.setValue(lock);
+        node.toggleUsed();
 
         int currentValue = (node != this.current) ? node.getValue() : 0;
 

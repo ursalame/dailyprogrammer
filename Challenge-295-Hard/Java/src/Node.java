@@ -1,9 +1,8 @@
 class Node {
     private Node up = null, down = null, left = null, right = null, wrap = null;
     private int value;
+    private boolean used;
 
-    public Node() {
-    }
 
     public Node getUp() {
         return up;
@@ -51,5 +50,17 @@ class Node {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public boolean isUsed() {
+        return used;
+    }
+
+    public void toggleUsed(){
+        this.used = !this.used;
+    }
+
+    public void setUsed(boolean used) {
+        this.used = used;
     }
 }
