@@ -1,6 +1,2 @@
-
-/Challenge-295-Hard/out/
-/Challenge-295-Hard/.idea/
-/.idea/
-/Challenge-295-Hard/Java/.idea/
-/Challenge-295-Hard/Java/out/
+**/out/
+**/.idea/
